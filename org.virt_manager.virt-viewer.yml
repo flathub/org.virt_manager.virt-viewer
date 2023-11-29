@@ -1,6 +1,6 @@
 app-id: org.virt_manager.virt-viewer
 runtime: org.gnome.Platform
-runtime-version: "44"
+runtime-version: "45"
 sdk: org.gnome.Sdk
 command: remote-viewer
 copy-icon: true
@@ -62,14 +62,14 @@ modules:
         sources:
           - type: archive
             url: >-
-              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.2.tar.bz2
-            sha256: e24eb88b8ce7db3b7ca6eb80115dd1284abc5ec32a8deccfed2224fc2532b9fd
+              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.4.tar.bz2
+            sha256: 1e0b0c7231c5fa122e06c0609a76723664d068b0dba3b8219b63e6340b347860
       - name: rpcsvc-proto
         buildsystem: autotools
         sources:
           - type: archive
-            url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.1.tar.gz
-            sha256: 750f7e57b81407a25b707867e90d7ee80aeb53bf515b114fc218f3c78dc9a6e8
+            url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.4.tar.gz
+            sha256: 7988641deae8463303b6273d7af98ece09111c385d4c9134a142a5fad3cdfef8
       - name: libvirt
         builddir: true
         buildsystem: meson
@@ -106,8 +106,8 @@ modules:
     sources:
       - type: archive
         url: >-
-          https://gitlab.freedesktop.org/spice/spice-gtk/uploads/05c649d612f31b60e4aa44a7c44e611c/spice-gtk-0.41.tar.xz
-        sha256: d8f8b5cbea9184702eeb8cc276a67d72acdb6e36e7c73349fb8445e5bca0969f
+          https://gitlab.freedesktop.org/spice/spice-gtk/uploads/e41347144c5d2f9947e215c894969f0e/spice-gtk-0.42.tar.xz
+        sha256: 9380117f1811ad1faa1812cb6602479b6290d4a0d8cc442d44427f7f6c0e7a58
     modules:
       - name: spice-protocol
         buildsystem: meson
@@ -118,6 +118,9 @@ modules:
             sha256: 04ffba610d9fd441cfc47dfaa135d70096e60b1046d2119d8db2f8ea0d17d912
       - name: phodav
         buildsystem: meson
+        config-opts:
+          - -Dsystemdsystemunitdir=${FLATPAK_DEST}/lib/systemd/system
+          - -Dudevrulesdir=${FLATPAK_DEST}/lib/udev/rules.d
         sources:
           - type: archive
             url: https://download.gnome.org/sources/phodav/3.0/phodav-3.0.tar.xz
