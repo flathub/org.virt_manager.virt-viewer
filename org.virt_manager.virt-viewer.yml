@@ -3,7 +3,8 @@ runtime: org.gnome.Platform
 runtime-version: "44"
 sdk: org.gnome.Sdk
 command: remote-viewer
-copy-icon: virt-viewer
+copy-icon: true
+rename-icon: virt-viewer
 rename-desktop-file: remote-viewer.desktop
 rename-appdata-file: remote-viewer.appdata.xml
 finish-args:
