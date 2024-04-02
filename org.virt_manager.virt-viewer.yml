@@ -1,6 +1,6 @@
 app-id: org.virt_manager.virt-viewer
 runtime: org.gnome.Platform
-runtime-version: "45"
+runtime-version: "46"
 sdk: org.gnome.Sdk
 command: remote-viewer
 copy-icon: true
@@ -119,8 +119,8 @@ modules:
       - name: phodav
         buildsystem: meson
         config-opts:
-          - -Dsystemdsystemunitdir=${FLATPAK_DEST}/lib/systemd/system
-          - -Dudevrulesdir=${FLATPAK_DEST}/lib/udev/rules.d
+          - -Dsystemdsystemunitdir=lib/systemd/system
+          - -Dudevrulesdir=lib/udev/rules.d
         sources:
           - type: archive
             url: https://download.gnome.org/sources/phodav/3.0/phodav-3.0.tar.xz
