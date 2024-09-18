@@ -1,12 +1,12 @@
 app-id: org.virt_manager.virt-viewer
 runtime: org.gnome.Platform
-runtime-version: "46"
+runtime-version: "47"
 sdk: org.gnome.Sdk
 command: remote-viewer
 copy-icon: true
 rename-icon: virt-viewer
-rename-desktop-file: remote-viewer.desktop
-rename-appdata-file: remote-viewer.appdata.xml
+# rename-desktop-file: remote-viewer.desktop
+# rename-appdata-file: remote-viewer.appdata.xml
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
@@ -38,8 +38,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://github.com/lz4/lz4/archive/v1.9.4.tar.gz
-        sha256: 0b0e3aa07c8c063ddf40b082bdf7e37a1562bda40a0ff5272957f3e987e0e54b
+        url: https://github.com/lz4/lz4/archive/refs/tags/v1.10.0.tar.gz
+        sha256: 537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b
   - name: gtk-vnc
     buildsystem: meson
     cleanup:
@@ -52,8 +52,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://libvirt.org/sources/glib/libvirt-glib-4.0.0.tar.xz
-        sha256: 8423f7069daa476307321d1c11e2ecc285340cd32ca9fc05207762843edeacbd
+        url: https://libvirt.org/sources/glib/libvirt-glib-5.0.0.tar.xz
+        sha256: 9bfec346382416a3575d87299bc641b2a464aa519fd9b1287e318aa43a2f3b8b
     modules:
       - name: libtirpc
         config-opts:
@@ -62,8 +62,8 @@ modules:
         sources:
           - type: archive
             url: >-
-              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.4.tar.bz2
-            sha256: 1e0b0c7231c5fa122e06c0609a76723664d068b0dba3b8219b63e6340b347860
+              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.5.tar.bz2
+            sha256: 9b31370e5a38d3391bf37edfa22498e28fe2142467ae6be7a17c9068ec0bf12f
       - name: rpcsvc-proto
         buildsystem: autotools
         sources:
@@ -90,8 +90,8 @@ modules:
           - "-Dstorage_vstorage=disabled"
         sources:
           - type: archive
-            url: https://libvirt.org/sources/libvirt-9.0.0.tar.xz
-            sha256: deca5cff1b7baac297bca9663907c61f71a47183371dc7ac019c107806d5435a
+            url: https://libvirt.org/sources/libvirt-10.7.0.tar.xz
+            sha256: ca757322eed998013b21f474c6c0c15dc08320ba6c8bae54aa16a93a1c3b7054
   - name: spice-gtk
     buildsystem: meson
     build-options:
@@ -134,19 +134,22 @@ modules:
       - name: python-pyparsing
         buildsystem: simple
         build-commands:
-          - pip3 install --prefix=/app pyparsing-2.4.6-py2.py3-none-any.whl
+          - pip3 install --prefix=/app pyparsing-3.1.4-py3-none-any.whl
         sources:
           - type: file
             url: >-
-              https://files.pythonhosted.org/packages/5d/bc/1e58593167fade7b544bfe9502a26dc860940a79ab306e651e7f13be68c2/pyparsing-2.4.6-py2.py3-none-any.whl
-            sha256: c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec
+              https://files.pythonhosted.org/packages/e5/0c/0e3c05b1c87bb6a1c76d281b0f35e78d2d80ac91b5f8f524cebf77f51049/pyparsing-3.1.4-py3-none-any.whl
+            sha256: a6a7ee4235a3f944aa1fa2249307708f893fe5717dc603503c6c7969c070fb7c
   - name: virt-viewer
     buildsystem: meson
     post-install:
-      - "mv ${FLATPAK_DEST}/share/mime/packages/virt-viewer-mime.xml ${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml"
+      - mv "${FLATPAK_DEST}/share/mime/packages/virt-viewer-mime.xml" "${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml"
+      - mv ../remote-viewer.appdata.xml "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.appdata.xml"
+      - mv "${FLATPAK_DEST}/share/applications/org.virt-manager.virt-viewer.desktop" "${FLATPAK_DEST}/share/applications/org.virt_manager.virt-viewer.desktop"
     sources:
       - type: git
         url: https://gitlab.com/virt-viewer/virt-viewer
-        commit: f374f7a02dae997a8d4c6879e2eeaf6f21890e96
-      - type: patch
-        path: virt-viewer-appdata.patch
+        commit: 82dbca46b605685ab354bf8cea7f2a2615132b39
+      - type: file
+        path: remote-viewer.appdata.xml
+        dest: .
