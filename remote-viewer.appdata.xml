@@ -2,6 +2,9 @@
 <component type="desktop-application">
     <id>org.virt_manager.virt-viewer</id>
     <metadata_license>CC0-1.0</metadata_license>
+    <developer id="org.virt-manager">
+        <name>The Virtual Machine Manager contributors</name>
+    </developer>
     <project_license>GPL-2.0+</project_license>
     <name>Remote Viewer</name>
     <summary>Remotely access virtual machines</summary>
@@ -18,19 +21,23 @@
     <screenshots>
         <screenshot type="default">
             <image>
-                https://raw.githubusercontent.com/virt-manager/virt-manager-web/505f526a1303c9bbea54ab9b8ede5ed4ee2e838b/appdata/en_us/virt-viewer/general.png</image>
+                https://virt-manager.org/appdata/en_US/virt-viewer/general.png</image>
+            <caption>Virt viewer connected to a remote Fedora Workstation desktop with Firefox open</caption>
         </screenshot>
         <screenshot>
             <image>
-                https://raw.githubusercontent.com/virt-manager/virt-manager-web/505f526a1303c9bbea54ab9b8ede5ed4ee2e838b/appdata/en_us/virt-viewer/connection.png</image>
+                https://virt-manager.org/appdata/en_US/virt-viewer/connection.png</image>
+            <caption>Connection selection window</caption>
         </screenshot>
         <screenshot>
             <image>
-                https://raw.githubusercontent.com/virt-manager/virt-manager-web/505f526a1303c9bbea54ab9b8ede5ed4ee2e838b/appdata/en_us/virt-viewer/usbredir.png</image>
+                https://virt-manager.org/appdata/en_US/virt-viewer/usbredir.png</image>
+                <caption>Redirect local USB devices to a remote host</caption>
         </screenshot>
         <screenshot>
             <image>
-                https://raw.githubusercontent.com/virt-manager/virt-manager-web/505f526a1303c9bbea54ab9b8ede5ed4ee2e838b/appdata/en_us/virt-viewer/shared_folder.png</image>
+                https://virt-manager.org/appdata/en_US/virt-viewer/shared_folder.png</image>
+                <caption>Share a local folder to the remote system</caption>
         </screenshot>
     </screenshots>
     <launchable type="desktop-id">org.virt_manager.virt-viewer.desktop</launchable>

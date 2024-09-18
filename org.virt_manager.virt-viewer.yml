@@ -5,8 +5,8 @@ sdk: org.gnome.Sdk
 command: remote-viewer
 copy-icon: true
 rename-icon: virt-viewer
-# rename-desktop-file: remote-viewer.desktop
-# rename-appdata-file: remote-viewer.appdata.xml
+rename-desktop-file: org.virt-manager.virt-viewer.desktop
+rename-appdata-file: org.virt-manager.virt-viewer.appdata.xml
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
@@ -145,7 +145,8 @@ modules:
     post-install:
       - mv "${FLATPAK_DEST}/share/mime/packages/virt-viewer-mime.xml" "${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml"
       - mv ../remote-viewer.appdata.xml "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.appdata.xml"
-      - mv "${FLATPAK_DEST}/share/applications/org.virt-manager.virt-viewer.desktop" "${FLATPAK_DEST}/share/applications/org.virt_manager.virt-viewer.desktop"
+      # - mv "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.appdata.xml" "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.metainfo.xml"
+      # - mv "${FLATPAK_DEST}/share/applications/org.virt-manager.virt-viewer.desktop" "${FLATPAK_DEST}/share/applications/org.virt_manager.virt-viewer.desktop"
     sources:
       - type: git
         url: https://gitlab.com/virt-viewer/virt-viewer
