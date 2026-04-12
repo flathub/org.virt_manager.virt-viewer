@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux,flatpak,git,sublimetext,vim
 
 ### Flatpak ###
+.flatpak
 .flatpak-builder
 build
 build-dir
