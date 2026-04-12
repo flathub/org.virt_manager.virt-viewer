@@ -1,6 +1,6 @@
 app-id: org.virt_manager.virt-viewer
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "50"
 sdk: org.gnome.Sdk
 command: remote-viewer
 copy-icon: true
@@ -32,8 +32,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gtk-vnc/1.3/gtk-vnc-1.3.1.tar.xz
-        sha256: 512763ac4e0559d0158b6682ca5dd1a3bd633f082f5e4349d7158e6b5f80f1ce
+        url: https://download.gnome.org/sources/gtk-vnc/1.5/gtk-vnc-1.5.0.tar.xz
+        sha256: c0beb4747528ad931da43acc567c6a0190f7fc624465571ed9ccece02c34dd23
   - name: libvirt-glib
     buildsystem: meson
     sources:
@@ -48,8 +48,8 @@ modules:
         sources:
           - type: archive
             url: >-
-              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.5.tar.bz2
-            sha256: 9b31370e5a38d3391bf37edfa22498e28fe2142467ae6be7a17c9068ec0bf12f
+              https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.3.7.tar.bz2
+            sha256: b47d3ac19d3549e54a05d0019a6c400674da716123858cfdb6d3bdd70a66c702
       - name: rpcsvc-proto
         buildsystem: autotools
         sources:
@@ -76,8 +76,8 @@ modules:
           - "-Dstorage_vstorage=disabled"
         sources:
           - type: archive
-            url: https://libvirt.org/sources/libvirt-10.7.0.tar.xz
-            sha256: ca757322eed998013b21f474c6c0c15dc08320ba6c8bae54aa16a93a1c3b7054
+            url: https://download.libvirt.org/libvirt-12.1.0.tar.xz
+            sha256: 3b60040a3670ec014d058ed021ae641e9fa6d3b5c4b56e63e8928f1804ef4b9b
   - name: spice-gtk
     buildsystem: meson
     build-options:
@@ -100,8 +100,8 @@ modules:
         sources:
           - type: archive
             url: >-
-              https://www.spice-space.org/download/releases/spice-protocol-0.14.4.tar.xz
-            sha256: 04ffba610d9fd441cfc47dfaa135d70096e60b1046d2119d8db2f8ea0d17d912
+              https://www.spice-space.org/download/releases/spice-protocol-0.14.5.tar.xz
+            sha256: baf58449f6e89d19f475899ad5fb9196fdc46c03cc53233f4e39cf2978f9cff7
       - name: phodav
         buildsystem: meson
         config-opts:
@@ -115,28 +115,35 @@ modules:
         sources:
           - type: archive
             url: >-
-              https://www.spice-space.org/download/libcacard/libcacard-2.8.1.tar.xz
-            sha256: fbbf4de8cb7db5bdff5ecb672ff0dbe6939fb9f344b900d51ba6295329a332e7
+              https://www.spice-space.org/download/libcacard/libcacard-2.8.2.tar.xz
+            sha256: 45fc28a6ff3c7a359d4448132ca190f0a9c760540c445dba4597a5b71de40f68
       - name: python-pyparsing
         buildsystem: simple
         build-commands:
-          - pip3 install --prefix=/app pyparsing-3.1.4-py3-none-any.whl
+          - pip3 install --prefix=/app pyparsing-3.3.2-py3-none-any.whl
         sources:
           - type: file
             url: >-
-              https://files.pythonhosted.org/packages/e5/0c/0e3c05b1c87bb6a1c76d281b0f35e78d2d80ac91b5f8f524cebf77f51049/pyparsing-3.1.4-py3-none-any.whl
-            sha256: a6a7ee4235a3f944aa1fa2249307708f893fe5717dc603503c6c7969c070fb7c
+              https://files.pythonhosted.org/packages/10/bd/c038d7cc38edc1aa5bf91ab8068b63d4308c66c4c8bb3cbba7dfbc049f9c/pyparsing-3.3.2-py3-none-any.whl
+            sha256: 850ba148bd908d7e2411587e247a1e4f0327839c40e2e5e6d05a007ecc69911d
+      - name: python-six
+        buildsystem: simple
+        build-commands:
+          - pip3 install --prefix=/app six-1.17.0-py2.py3-none-any.whl
+        sources:
+          - type: file
+            url: >-
+              https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl
+            sha256: 4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274
   - name: virt-viewer
     buildsystem: meson
     post-install:
       - mv "${FLATPAK_DEST}/share/mime/packages/virt-viewer-mime.xml" "${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml"
       - mv ../remote-viewer.appdata.xml "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.appdata.xml"
-      # - mv "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.appdata.xml" "${FLATPAK_DEST}/share/metainfo/org.virt-manager.virt-viewer.metainfo.xml"
-      # - mv "${FLATPAK_DEST}/share/applications/org.virt-manager.virt-viewer.desktop" "${FLATPAK_DEST}/share/applications/org.virt_manager.virt-viewer.desktop"
     sources:
-      - type: git
-        url: https://gitlab.com/virt-viewer/virt-viewer
-        commit: 82dbca46b605685ab354bf8cea7f2a2615132b39
+      - type: archive
+        url: https://gitlab.com/virt-viewer/virt-viewer/-/archive/e07dbc915b320f70c6857ea845a67f2843848825/virt-viewer-e07dbc915b320f70c6857ea845a67f2843848825.tar.gz
+        sha256: a1bce34a389091eefb8b75130f5cc751538a8d9e00388ff3f4e63dbb9a0664d0
       - type: file
         path: remote-viewer.appdata.xml
         dest: .
